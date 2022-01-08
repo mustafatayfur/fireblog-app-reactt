@@ -19,7 +19,7 @@ const bull = (
 export default function BasicCard() {
   return (
     <div className='profileCard'>
-      <Card sx={{ maxWidth: 375, height: 300 }}>
+      <Card sx={{ width: 375, height: 300 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
             Word of the Day
