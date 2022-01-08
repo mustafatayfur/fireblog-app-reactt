@@ -21,23 +21,18 @@ const BlogForm=()=>{
           }}
           noValidate
           autoComplete='off'>
-          
             <TextField
             required
               id='outlined-basic'
               label='Title'
               variant='outlined'
             />
-          
-          
             <TextField
             required
               id='outlined-basic'
               label='Image URL'
               variant='outlined'
             />
-         
-        
             <TextField
                 required
               id='outlined-multiline-static'
