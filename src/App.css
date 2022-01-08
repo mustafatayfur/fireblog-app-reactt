@@ -47,8 +47,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40PX;
+  margin-top: 40px;
 }
 .avatar{
   text-align: center;
+}
+.profileCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
 }
