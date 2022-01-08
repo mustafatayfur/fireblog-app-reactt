@@ -7,6 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import blog from "../assets/blogpost.jpeg";
 
 const bull = (
   <Box
@@ -19,8 +20,9 @@ const bull = (
 export default function BasicCard() {
   return (
     <div className='profileCard'>
-      <Card sx={{ width: 375, height: 300 }}>
+      <Card sx={{ width: 375, height: 300, background: '#E2ECF2' }} variant="outlined">
         <CardContent>
+        
           <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
             Word of the Day
           </Typography>
