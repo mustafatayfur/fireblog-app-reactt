@@ -20,12 +20,14 @@ export default function FormPropsTextFields() {
           noValidate
           autoComplete='off'>
           <TextField
+          required
           id="outlined-password-input"
           label="Password"
           type="password"
           autoComplete="current-password"
         />
         <TextField
+            required
           id="outlined-email-input"
           label="Email"
           type="email"
