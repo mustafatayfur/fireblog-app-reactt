@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
+import blog from '../assets/blogpost.jpeg'
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
@@ -32,7 +33,7 @@ export default function MenuAppBar() {
       <AppBar position="static">
         <Toolbar>
         <Link to='/' sx={{ p: 0 }}>
-                <Avatar alt="" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="" src={blog} />
         </Link>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           
