@@ -30,17 +30,21 @@ export default function MenuAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       
-      <AppBar position="static">
+      <AppBar position="static" sx={{ height: 100 }}>
         <Toolbar>
-        <Link to='/' sx={{ p: 0 }}>
-                <Avatar alt="" src={blog} />
+        <Link to='/' sx={{ p: 0}}>
+            <IconButton  sx={{ p: 0, height: 100 }}>
+                    <Avatar sx={{ height: 90, width: 90 }} alt="blog" src={blog} />
+            </IconButton>
+              
         </Link>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml:4 }}>
+            <h2>TayfurAcademy</h2>
           </Typography>
           {auth && (
             <div>
               <IconButton
+                
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -48,9 +52,10 @@ export default function MenuAppBar() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle sx={{ height: 50, width: 50 }} />
               </IconButton>
               <Menu
+              sx={{ mt: '70px' }}
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -66,7 +71,8 @@ export default function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>New</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem>
               </Menu>
             </div>
           )}
