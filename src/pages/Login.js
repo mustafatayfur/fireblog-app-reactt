@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Avatar, Button } from '@mui/material';
 import blog from "../assets/blogpost.jpeg";
-// import { auth } from "../helpers/firebase"
+import { auth, provider } from "../helpers/firebase"
 import { FirebaseError } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -11,8 +11,6 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const loginFirebase=()=> {
 
   const SignInWithFirebase = ()=> {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
 
     signInWithPopup(auth, provider)
     .then((result) => {
@@ -42,6 +40,7 @@ const loginFirebase=()=> {
       </div>
       <div>
         <Box
+          onSubmit={null}
           component='form'
           sx={{
             "& > :not(style)": { m: 2, width: "50ch", display: 'flex' },
@@ -62,9 +61,9 @@ const loginFirebase=()=> {
           type="email"
           autoComplete="current-email"
         />
-            <Button variant="contained" size="large">SUBMIT</Button>
-            <Button size="large" onClick={SignInWithFirebase}>Sign in with Google</Button>
+            <Button type="submit" variant="contained" size="large">SUBMIT</Button>
         </Box>
+            <Button size="large" onClick={SignInWithFirebase}>Sign in with Google</Button>
       </div>
     </div>
   );
