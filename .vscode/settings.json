@@ -16,6 +16,10 @@
     "*README.*": true,
     "*src.*": true,
     "*yarn": true,
-    "*yarn.*": true
+    "*yarn.*": true,
+    "*node_modules": true,
+    "*package": true,
+    "*package.*": true,
+    "src\\redux": true
   }
 }
