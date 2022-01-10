@@ -6,6 +6,7 @@ import { AuthContext } from "../contexts/AuthContext"
 import { useHistory, useNavigate } from "react-router-dom";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
+import { linkWithRedirect } from "firebase/auth";
 
 
 const Register = () => {
@@ -14,39 +15,21 @@ const Register = () => {
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
-  const {createUser} = useContext(AuthContext);
+  const {currentUser} = useContext(AuthContext);
 
   const handleSubmit = async () => {
 
     const user = { email, password };
-
-    // try{
-
-    //     let user = await createUserWithEmailAndPassword(auth, email, password)
-    //     console.log(user)
-    //     await updateProfile(auth.currentUser, {password : password, email: email})
-    //     console.log(auth.currentUser)
-    //     navigate('/')
-
-    // }catch(err){
-    //     alert(err.message)
-    // }
-
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-        console.log("created")
-        navigate('/')
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    createUser(user.email, user.password);
+    history.push('/');
   };
+  const handleProviderRegister = () => {
+    continueWithGoogle();
+    history.push('/');
+  }
+  if (currentUser) {
+     navigate('/')
+  }
 
   return (
     <div className='newBlog'>
@@ -85,6 +68,7 @@ const Register = () => {
             REGISTER
           </Button>
         </Box>
+        <Button onClick={handleProviderRegister}></Button>
       </div>
     </div>
   );
