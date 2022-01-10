@@ -3,14 +3,14 @@
 import { useState, useContext } from "react";
 import { continueWithGoogle, createUser } from './../helpers/firebase';
 import { AuthContext } from "../contexts/AuthContext"
-import { useHistory, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
 import { linkWithRedirect } from "firebase/auth";
 
 
 const Register = () => {
-    const history = useHistory()
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -21,11 +21,11 @@ const Register = () => {
 
     const user = { email, password };
     createUser(user.email, user.password);
-    history.push('/');
+    navigate('/');
   };
   const handleProviderRegister = () => {
     continueWithGoogle();
-    history.push('/');
+    navigate('/')
   }
   if (currentUser) {
      navigate('/')
