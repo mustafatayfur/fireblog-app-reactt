@@ -37,18 +37,19 @@ const app = initializeApp(firebaseConfig);
 export const createUser = (email, password) => {
   const auth = getAuth(app);
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-      console.log(user.email)
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
+  let user = createUserWithEmailAndPassword(auth, email, password)
+  console.log(user)
+    // .then((userCredential) => {
+    //   // Signed in
+    //   const user = userCredential.user;
+    //   // ...
+    //   console.log(user.email)
+    // })
+    // .catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // ..
+    // });
     
 };
 
