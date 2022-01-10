@@ -33,10 +33,10 @@ import {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
 
 export const createUser = (email, password) => {
-  
+  const auth = getAuth(app);
+
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -53,7 +53,8 @@ export const createUser = (email, password) => {
 };
 
 export const logIn = (email, password) => {
- 
+  const auth = getAuth();
+
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in

@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Avatar, Button } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
-import { auth } from "../helpers/firebase";
+// import { auth } from "../helpers/firebase";
 import { FirebaseError } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
@@ -14,7 +14,7 @@ const LoginFirebase = () => {
   const [email, setEmail] = React.useState("");
 
   const SignInWithFirebase = () => {
-    signInWithPopup(auth)
+    signInWithPopup()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -78,7 +78,7 @@ const LoginFirebase = () => {
             SUBMIT
           </Button>
         </Box>
-        <Button size='large' onClick={() => SignInWithFirebase(auth)}>
+        <Button size='large' onClick={() => SignInWithFirebase()}>
           Sign in with Google
         </Button>
       </div>
