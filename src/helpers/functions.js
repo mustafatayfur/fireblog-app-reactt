@@ -5,15 +5,15 @@ import { getDatabase,ref,push,set, onValue,query, remove, child, update } from "
 
 export const addInfo=(title, imageUrl, content, email)=>{
     const db=getDatabase();
-    const userRef=ref(db,"fireblog")
-    const newUserRef=push(userRef)
-    set(newUserRef,{
+    // const userRef=ref(db,"fireblog")
+    // const newUserRef=push(userRef)
+    set(ref(db,"fireblog"),{
         title: title,
         imageUrl:imageUrl,
         content:content,
         email:email
 
-    })
+    }) 
     // successNote("Added successfully")
 }
 export const useFetch=()=>{

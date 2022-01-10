@@ -5,12 +5,17 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Avatar, Button } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
+import { addDoc } from "firebase/firestore";
 
-const BlogForm=({handleNewSubmit})=>{
+const BlogForm=()=>{
 
   const [title, setTitle] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
-  const [content, setContent] = React.useState("")
+  const [content, setContent] = React.useState("");
+
+  const createPost = async ()=> {
+
+  }
 
   return (
     <div className="newBlog">

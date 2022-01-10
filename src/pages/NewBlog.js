@@ -6,12 +6,9 @@ const initialValues = { title: '', imageUrl: '', content: '' };
 
 
 const NewBlog = () => {
-    const handleNewSubmit =(e)=>{
-        e.preventDefault()
-        addInfo()
-    }
+   
     return (
-        <BlogForm handleNewSubmit={handleNewSubmit} />
+        <BlogForm  />
     )
 }
 
