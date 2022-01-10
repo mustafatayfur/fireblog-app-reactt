@@ -42,12 +42,14 @@ export const createUser = (email, password) => {
       // Signed in
       const user = userCredential.user;
       // ...
+      console.log(user.email)
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
     });
+    
 };
 
 export const logIn = (email, password) => {

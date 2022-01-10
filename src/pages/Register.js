@@ -6,7 +6,6 @@ import { AuthContext } from "../contexts/AuthContext"
 import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
-import { linkWithRedirect } from "firebase/auth";
 
 
 const Register = () => {
@@ -17,18 +16,19 @@ const Register = () => {
   const navigate = useNavigate();
   const {currentUser} = useContext(AuthContext);
 
-  const handleSubmit = async () => {
-
+  const handleSubmit = () => {
     const user = { email, password };
     createUser(user.email, user.password);
-    navigate('/');
+    navigate('/')
+    console.log(user)
   };
+
   const handleProviderRegister = () => {
     continueWithGoogle();
-    navigate('/')
+    // navigate('/')
   }
   if (currentUser) {
-     navigate('/')
+    //  navigate('/')
   }
 
   return (
@@ -39,7 +39,7 @@ const Register = () => {
       </div>
       <div>
         <Box
-          onSubmit={handleSubmit}
+          
           component='form'
           sx={{
             "& > :not(style)": { m: 2, width: "50ch", display: "flex" },
@@ -64,11 +64,12 @@ const Register = () => {
             autoComplete='current-email'
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Button type='submit' variant='contained' size='large'>
+          <Button onClick={handleSubmit} type='submit' variant='contained' size='large'>
             REGISTER
           </Button>
-        </Box>
-        <Button onClick={handleProviderRegister}></Button>
+          </Box>
+          <Button type="" onClick={handleProviderRegister} size='large'>Continue with Google</Button>
+        
       </div>
     </div>
   );
