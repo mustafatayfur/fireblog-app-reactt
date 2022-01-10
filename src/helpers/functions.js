@@ -3,15 +3,15 @@ import { useState,useEffect } from "react";
 import { getDatabase,ref,push,set, onValue,query, remove, child, update } from "firebase/database"
 // import { successNote } from "./customTostify";
 
-export const addInfo=(info)=>{
+export const addInfo=(title, imageUrl, content, email)=>{
     const db=getDatabase();
     const userRef=ref(db,"fireblog")
     const newUserRef=push(userRef)
     set(newUserRef,{
-        title: "",
-        imageUrl:"",
-        content:"",
-        email:""
+        title: title,
+        imageUrl:imageUrl,
+        content:content,
+        email:email
 
     })
     // successNote("Added successfully")
@@ -35,19 +35,24 @@ export const useFetch=()=>{
         setIsLoading(false)
       })
     },[]);
+    console.log(newUser)
     return {isLoading,newUser};
 }
 
-export const deleteInfo=(id)=>{
-    const db = getDatabase();
-      //const userRef = ref(db, 'contact');
-      remove(ref(db, "fireblog/"+ id))
-}
+// export const deleteInfo=(id)=>{
+//     const db = getDatabase();
+//       //const userRef = ref(db, 'contact');
+//       remove(ref(db, "fireblog/"+ id))
+//      successNote('Successfully deleted!');
+// }
 
-export const updateInfo = (info)=>{
+export const updateInfo = (title, imageUrl, content, email)=>{
   const db = getDatabase()
-  const newUserKey=push(child(ref(db), "fireblog/")).key;
+  const infoData = {
+    title, imageUrl, content, email
+  };
   const updates = {};
-  updates["fireblog/"+newUserKey]=info;
-  return update(ref(db), updates)
+  updates['contact/' + email] = infoData;
+  update(ref(db), updates);
+  // successNote('Updated');
 }

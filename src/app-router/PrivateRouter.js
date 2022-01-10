@@ -15,25 +15,24 @@ const PrivateRouter = ({isUserSignedIn}) => {
     
         return (
             <div>
-                 {!isUserSignedIn 
-                    ? 
+                 
+                    
                 (<Routes>
                     
                     <Route path="/register" element={<Register/>} />
 
-                </Routes>)
-                :
-                (<Routes>
+                </Routes>
+                
+                <Routes>
                     <Route path="/about" element={<About/>} />
                     <Route path="/details" element={<Details/>} />
-                   
                     <Route path="/new-blog" element={<NewBlog/>} />
                     <Route path="/profile" element={<Profile/>} />
                     <Route path="/updateBlog" element={<UpdateBlog/>} />
-               
-                </Routes>)
+            
+                </Routes>
                 
-            }
+            
             </div>
          )
     
