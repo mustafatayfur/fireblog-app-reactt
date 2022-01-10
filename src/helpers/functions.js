@@ -41,13 +41,13 @@ export const useFetch=()=>{
 export const deleteInfo=(id)=>{
     const db = getDatabase();
       //const userRef = ref(db, 'contact');
-      remove(ref(db, "contact/"+ id))
+      remove(ref(db, "fireblog/"+ id))
 }
 
 export const updateInfo = (info)=>{
   const db = getDatabase()
-  const newUserKey=push(child(ref(db), "contact/")).key;
+  const newUserKey=push(child(ref(db), "fireblog/")).key;
   const updates = {};
-  updates["contact/"+newUserKey]=info;
+  updates["fireblog/"+newUserKey]=info;
   return update(ref(db), updates)
 }

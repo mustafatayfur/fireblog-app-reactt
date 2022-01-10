@@ -14,12 +14,11 @@ import UpdateBlog from '../pages/UpdateBlog'
 const PrivateRouter = ({isUserSignedIn}) => {
     
         return (
-            <>
+            <div>
                  {!isUserSignedIn 
                     ? 
                 (<Routes>
                     
-                   
                     <Route path="/register" element={<Register/>} />
 
                 </Routes>)
@@ -35,7 +34,7 @@ const PrivateRouter = ({isUserSignedIn}) => {
                 </Routes>)
                 
             }
-            </>
+            </div>
          )
     
     
