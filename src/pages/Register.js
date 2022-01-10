@@ -16,7 +16,18 @@ const Register = () => {
     const handleSubmit = async() => {
         // console.log(firstName, lastName, email,password );
         
-        
+        try{
+
+            let user = await createUserWithEmailAndPassword(auth, email, password)
+            console.log(user)
+            await updateProfile(auth.currentUser, {password : password, email: email})
+            console.log(auth.currentUser)
+            navigate('/')
+            
+            
+          }catch(err){
+            alert(err.message)
+          }
     }
 
     return (
