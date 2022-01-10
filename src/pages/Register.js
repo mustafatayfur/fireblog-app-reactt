@@ -1,21 +1,24 @@
 /** @format */
 
-import { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile, getAuth } from "firebase/auth";
-// import { auth } from "../helpers/firebase";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { continueWithGoogle, createUser } from './../helpers/firebase';
+import { AuthContext } from "../contexts/AuthContext"
+import { useHistory, useNavigate } from "react-router-dom";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
 
 
 const Register = () => {
+    const history = useHistory()
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const navigate = useNavigate();
+  const {createUser} = useContext(AuthContext);
 
   const handleSubmit = async () => {
-    // console.log(firstName, lastName, email,password );
+
+    const user = { email, password };
 
     // try{
 
@@ -79,7 +82,7 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Button type='submit' variant='contained' size='large'>
-            SUBMIT
+            REGISTER
           </Button>
         </Box>
       </div>

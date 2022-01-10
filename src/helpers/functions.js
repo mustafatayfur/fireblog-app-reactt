@@ -3,19 +3,19 @@ import { useState,useEffect } from "react";
 import { getDatabase,ref,push,set, onValue,query, remove, child, update } from "firebase/database"
 // import { successNote } from "./customTostify";
 
-export const addInfo=(title, imageUrl, content, email)=>{
-    const db=getDatabase();
-    // const userRef=ref(db,"fireblog")
-    // const newUserRef=push(userRef)
-    set(ref(db,"fireblog"),{
-        title: title,
-        imageUrl:imageUrl,
-        content:content,
-        email:email
+// export const addInfo=(title, imageUrl, content, email)=>{
+//     const db=getDatabase();
+//     // const userRef=ref(db,"fireblog")
+//     // const newUserRef=push(userRef)
+//     set(ref(db,"fireblog"),{
+//         title: title,
+//         imageUrl:imageUrl,
+//         content:content,
+//         email:email
 
-    }) 
-    // successNote("Added successfully")
-}
+//     })
+//     // successNote("Added successfully")
+// }
 export const useFetch=()=>{
     const [newUser, setNewUser] = useState({});
     const [isLoading,setIsLoading]=useState(false)
