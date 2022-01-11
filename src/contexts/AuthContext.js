@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { userObserver } from "../helpers/firebase"; 
-export const AuthContext = createContext();
 
+export const AuthContext = createContext();
 
 
 export function AuthContextProvider(props) {
@@ -10,7 +10,7 @@ export function AuthContextProvider(props) {
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
-    userObserver(setCurrentUser,setPending);
+        userObserver(setCurrentUser,setPending);
     
   }, []);
 

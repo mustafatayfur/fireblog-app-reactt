@@ -32,7 +32,7 @@ import {
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 export const createUser = (email, password) => {
   const auth = getAuth(app);
@@ -43,7 +43,8 @@ export const createUser = (email, password) => {
 };
 
 export const logIn = (email, password) => {
-  const auth = getAuth();
+   const auth = getAuth(app);
+
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -64,7 +65,7 @@ export const logIn = (email, password) => {
 
 export const continueWithGoogle = () => {
   const provider = new GoogleAuthProvider();
-  const auth = getAuth();
+  const auth = getAuth(app);
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -87,10 +88,11 @@ export const continueWithGoogle = () => {
 };
 
 export const userObserver = (setCurrentUser, setPending) => {
-  const auth = getAuth();
+  const auth = getAuth(app);
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
+      console.log(uid)
       setCurrentUser(user);
       setPending(false);
     } else {
@@ -103,10 +105,10 @@ export const userObserver = (setCurrentUser, setPending) => {
 }; 
 
 export const logOut = () => {
-  const auth = getAuth();
+  const auth = getAuth(app);
   signOut(auth)
     .then(() => {
-      alert("Çıkış yapıldı!");
+      // alert("Çıkış yapıldı!");
       // Sign-out successful.
     })
     .catch((error) => {
