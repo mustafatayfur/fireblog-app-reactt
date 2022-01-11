@@ -1,46 +1,44 @@
 /** @format */
 
 import React, { useState, useContext } from "react";
+import { continueWithGoogle, logIn } from './../helpers/firebase';
+import { AuthContext } from "../contexts/AuthContext";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Avatar, Button } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
-// import { auth } from "../helpers/firebase";
-import { FirebaseError } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+// import { useHistory } from "react-router-dom";
+// import { Redirect } from 'react-router'
+import { useNavigate } from "react-router-dom";
 
-const LoginFirebase = () => {
+
+
+const Login = () => {
   const [password, setPassword] = React.useState("");
   const [email, setEmail] = React.useState("");
+  // const history = useHistory();
+   const navigate = useNavigate()
 
-  const SignInWithFirebase = () => {
-    signInWithPopup()
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setPassword("");
-    setEmail("");
-    console.log(password)
-    console.log(email)
-  };
+  const handleSubmit = () => {
+    const user = {email, password}
+
+    logIn(user.email, user.password)
+    navigate('/')
+
+  }
+
+  const handleProviderRegister = () => {
+    continueWithGoogle()
+    navigate('/')
+  }
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser){
+    // return <Redirect to:"/" />
+  }
+
+  
   return (
     <div className='newBlog'>
       <div className='avatar'>
@@ -49,7 +47,6 @@ const LoginFirebase = () => {
       </div>
       <div>
         <Box
-          onSubmit={handleSubmit}
           component='form'
           sx={{
             "& > :not(style)": { m: 2, width: "50ch", display: "flex" },
@@ -74,15 +71,16 @@ const LoginFirebase = () => {
             autoComplete='current-email'
             onChange={(e) => setEmail(e.target.value)}
           />
-          <Button type='submit' variant='contained' size='large'>
-            SUBMIT
+          <Button onClick={handleSubmit} type='submit' variant='contained' size='large'>
+            Login
           </Button>
-        </Box>
-        <Button size='large' onClick={() => SignInWithFirebase()}>
-          Sign in with Google
+          <Button size='large' onClick={handleProviderRegister}>
+          Sign in with <img className="google-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="google" />
         </Button>
+        </Box>
+       
       </div>
     </div>
   );
 };
-export default LoginFirebase;
+export default Login;

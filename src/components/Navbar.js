@@ -9,11 +9,16 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { Avatar } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { logOut } from '../helpers/firebase';
+import { AuthContext } from '../contexts/AuthContext'
 import blog from '../assets/blogpost.jpeg'
 
 export default function MenuAppBar() {
+  const { currentUser } = React.useContext(AuthContext) 
+  // const [displayToggle, setDisplayToggle] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -30,7 +35,7 @@ export default function MenuAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      
+     
       <AppBar position="static" sx={{ height: 100 }}>
         <Toolbar>
         <Link to='/' sx={{ p: 0}}>
@@ -45,7 +50,7 @@ export default function MenuAppBar() {
           {auth && (
             <div>
               <IconButton
-                
+        
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -55,6 +60,7 @@ export default function MenuAppBar() {
               >
                 <AccountCircle sx={{ height: 50, width: 50 }} />
               </IconButton>
+              
               <Menu
               sx={{ mt: '70px' }}
                 id="menu-appbar"
@@ -71,7 +77,17 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-              
+              {!currentUser ? 
+                <>
+                <Link to='/login'>
+                <MenuItem onClick={handleClose}>Login</MenuItem>
+                </Link>
+                <Link to='/register'>
+                <MenuItem onClick={handleClose}>Register</MenuItem>
+                </Link>
+                </>
+                :
+                <>
                 <Link to='/profile'>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </Link>
@@ -81,6 +97,10 @@ export default function MenuAppBar() {
                 <Link to='/'>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Link>
+                </>
+                
+              }
+                
               </Menu>
             </div>
           )}
