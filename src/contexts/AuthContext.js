@@ -6,13 +6,13 @@ export const AuthContext = createContext();
 
 export function AuthContextProvider(props) {
 
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(false);
   const [pending, setPending] = useState(true);
 
   useEffect(() => {
         userObserver(setCurrentUser,setPending);
     
-  }, []);
+  }, [currentUser]);
 
   if(pending){
     // console.log("pending");

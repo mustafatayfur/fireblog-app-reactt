@@ -15,6 +15,7 @@ import blog from '../assets/blogpost.jpeg'
 
 export default function MenuAppBar() {
   const { currentUser } = React.useContext(AuthContext) 
+  console.log("NavbarCurrentUser :",currentUser)
   // const [displayToggle, setDisplayToggle] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -77,6 +78,7 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+              
               {!currentUser ? 
                 <>
                 <Link to='/login'>

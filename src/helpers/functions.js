@@ -35,7 +35,7 @@ export const useFetch=()=>{
         setIsLoading(false)
       })
     },[]);
-    console.log(newUser)
+    // console.log(newUser)
     return {isLoading,newUser};
 }
 
