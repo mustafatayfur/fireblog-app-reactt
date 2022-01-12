@@ -9,8 +9,7 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import blog2 from "../assets/blogpost.jpg";
-import { useFetch } from "../helpers/functions";
+
 import { useNavigate } from "react-router-dom";
 
 
@@ -26,13 +25,6 @@ export default function BlogCard({doc}) {
   //  console.log(items)
     const {author, comments, content, get_like_count, image, published_date, title} = items
     const slicedDate = published_date.timestampValue.slice(0,10)
-    // const int_date = parseInt(published_date)
-    // console.log(int_date)
-
-    let date = new Date(published_date);
-    // let day = date.getDate();
-    // let month = date.getMonth(); 
-    // let year = date.getFullYear(); 
 
   
 
