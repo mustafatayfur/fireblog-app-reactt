@@ -63,3 +63,7 @@
   width: 18%;
   margin-left: 10px;
 }
+.icon{
+  display: flex;
+  flex-direction: row;
+}

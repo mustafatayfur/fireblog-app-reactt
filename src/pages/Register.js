@@ -67,8 +67,10 @@ const Register = () => {
           <Button onClick={handleSubmit} type='submit' variant='contained' size='large'>
             REGISTER
           </Button>
+          <Button type="" onClick={handleProviderRegister} size='large'>
+          Register with your <img className="google-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="google"/>account
+         </Button>
           </Box>
-          <Button type="" onClick={handleProviderRegister} size='large'>Continue with Google</Button>
         
       </div>
     </div>

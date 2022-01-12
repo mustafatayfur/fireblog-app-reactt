@@ -49,7 +49,8 @@ export default function MenuAppBar() {
             <h2>TayfurAcademy</h2>
           </Typography>
           {auth && (
-            <div>
+            <div className='icon'>
+              <h2>{currentUser.email}</h2>
               <IconButton
         
                 size="large"
@@ -96,8 +97,8 @@ export default function MenuAppBar() {
                 <Link to='/new-blog'>
                 <MenuItem onClick={handleClose}>New</MenuItem>
                 </Link>
-                <Link to='/'>
-                <MenuItem onClick={handleClose, logOut()}>Logout</MenuItem>
+                <Link to='/login'>
+                <MenuItem onClick={()=> logOut()}>Logout</MenuItem>
                 </Link>
                 </>
                 
