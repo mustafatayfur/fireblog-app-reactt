@@ -12,23 +12,47 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import blog2 from "../assets/blogpost.jpg";
 import { useFetch } from "../helpers/functions";
 
-export default function MultiActionAreaCard() {
+export default function MultiActionAreaCard({docs}) {
+
+
+  
   const { newUser, isLoading } = useFetch();
   console.log(newUser)
+
   return (
     <div className='App'>
       <h1>DASHBOARD</h1>
-      <Card sx={{ maxWidth: 445 }} className="card">
+      {
+        docs.map((doc)=> {
+          const {_document:{
+            data:{
+              value: {
+                mapValue:{
+                  fields: {
+                    author, 
+                    comments:{
+                      mapValue:{
+                        fields:{
+                          commemt_count
+                        }
+                      }
+                  }, 
+                  get_like_count, image, published_date, title}
+                }
+              }
+            }}} = doc
+          return (
+            <Card sx={{ maxWidth: 445 }} className="card" key={author}>
         <CardActionArea>
           <CardMedia
             component='img'
             height='140'
-            image={blog2}
-            alt='green iguana'
+            image={image}
+            alt='blog image'
           />
           <CardContent sx={{background:'#EFEEFE'}}> 
             <Typography gutterBottom variant='h5' component='div'>
-              Python
+              {title}
             </Typography>
             <Typography variant='body2' color='text.secondary'>
               Lizards are a widespread group of squamate reptiles, with over
@@ -51,6 +75,9 @@ export default function MultiActionAreaCard() {
           </Button>
         </CardActions>
       </Card>
+          )
+        })
+      }
     </div>
   );
 }

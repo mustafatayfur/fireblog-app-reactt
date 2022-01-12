@@ -97,7 +97,7 @@ export const userObserver = (setCurrentUser, setPending) => {
       setPending(false);
     } else {
       // User is signed out
-      setCurrentUser(null);
+      setCurrentUser(false);
       setPending(false);
       // ...
     }
@@ -142,6 +142,7 @@ export const addData = async (currentUser, title, content, image) => {
 export const readData = async (setData) => {
   const querySnapshot = await getDocs(collection(db, "blogs"));
   setData(querySnapshot.docs);
+  // console.log(querySnapshot.docs)
 };
 
 export const updateLike = async (id) => {
