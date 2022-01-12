@@ -18,7 +18,7 @@ export default function MultiActionAreaCard({doc}) {
   // console.log(_document.data.value.mapValue.fields)
    const items = _document.data.value.mapValue.fields 
    console.log(items)
-    // const {author, comments, content, get_like_count, image, published_date, title} = items
+    const {author, comments, content, get_like_count, image, published_date, title} = items
 
   return (
     <div className='App'>
@@ -29,31 +29,30 @@ export default function MultiActionAreaCard({doc}) {
           <CardMedia
             component='img'
             height='140'
-            image={blog2}
+            image={image.stringValue}
             alt='blog image'
           />
           <CardContent sx={{background:'#EFEEFE'}}> 
             <Typography gutterBottom variant='h5' component='div'>
-              {title}
+              {title.stringValue}
             </Typography>
             <Typography variant='body2' color='text.secondary'>
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {content.stringValue}
             </Typography>
           </CardContent>
         </CardActionArea>
         <Typography gutterBottom variant='h6' component='div'>
           <AccountCircleIcon sx={{ mr: '10px', mb:'-5px', ml:'-160px' }} />
-          <span>mltm0204@gmail.com</span>
+          <span>{author.stringValue}</span>
         </Typography>
         <CardActions>
           <Button>
             <FavoriteBorderIcon />
-            <span>2</span>
+            <span>{get_like_count.integerValue}</span>
           </Button>
           <Button>
             <ChatBubbleOutlineIcon />
-            <span>0</span>
+            <span>{comments.mapValue.fields.commemt_count.integerValue}</span>
           </Button>
         </CardActions>
       </Card>
