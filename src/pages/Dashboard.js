@@ -9,13 +9,21 @@ const Dashboard = () => {
     useEffect(() => {
         readData(setData);
     }, [])
-    console.log(data)
+    // console.log(data)
+    
 
     return (
-        <div>
-            <BlogCard docs={data}/>
+        <div className='App' >
+            <h1>DASHBOARD</h1>
+         
+            {data.map((doc)=>(
+                <BlogCard doc={doc} key={doc.id}/>
+            ))}
+            
         </div>
     )
 }
 
 export default Dashboard
+
+// _userDataWriter

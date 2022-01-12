@@ -12,42 +12,24 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import blog2 from "../assets/blogpost.jpg";
 import { useFetch } from "../helpers/functions";
 
-export default function MultiActionAreaCard({docs}) {
-
-
-  
-  const { newUser, isLoading } = useFetch();
-  console.log(newUser)
+export default function MultiActionAreaCard({doc}) {
+  console.log(doc)
+  const { _document } = doc
+  // console.log(_document.data.value.mapValue.fields)
+   const items = _document.data.value.mapValue.fields 
+   console.log(items)
+    // const {author, comments, content, get_like_count, image, published_date, title} = items
 
   return (
     <div className='App'>
-      <h1>DASHBOARD</h1>
-      {
-        docs.map((doc)=> {
-          const {_document:{
-            data:{
-              value: {
-                mapValue:{
-                  fields: {
-                    author, 
-                    comments:{
-                      mapValue:{
-                        fields:{
-                          commemt_count
-                        }
-                      }
-                  }, 
-                  get_like_count, image, published_date, title}
-                }
-              }
-            }}} = doc
-          return (
-            <Card sx={{ maxWidth: 445 }} className="card" key={author}>
+     
+
+            <Card sx={{ maxWidth: 445 }} className="card" >
         <CardActionArea>
           <CardMedia
             component='img'
             height='140'
-            image={image}
+            image={blog2}
             alt='blog image'
           />
           <CardContent sx={{background:'#EFEEFE'}}> 
@@ -75,9 +57,7 @@ export default function MultiActionAreaCard({docs}) {
           </Button>
         </CardActions>
       </Card>
-          )
-        })
-      }
+          
     </div>
   );
 }
