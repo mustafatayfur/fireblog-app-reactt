@@ -18,30 +18,10 @@ const BlogContextProvider = (props) => {
   console.log(data)
 
 
-// const getBlogs = ref(db, 'blogs/' + postId + '/starCount');
-// onValue(getBlogs, (snapshot) => {
-//   const data = snapshot.val();
-//   updateStarCount(postElement, data);
-// });
 
-//   const colRef = collection(db, "blogs");
 
-//   const q = query(colRef)
 
-//   const getBlogs = () => {
-//     setIsLoading(true);
-//     getDocs(q)
-//       .then((snapshot) => {
-//         let blogs = [];
-//         snapshot.docs.forEach((doc) => {
-//           blogs.push({ ...doc.data(), id: doc.id });
-//         });
-//         console.log(blogs);
-//         setBlogsInfo(blogs);
-//         setIsLoading(false);
-//       })
-//       .catch((err) => console.log(err.message));
-//   };
+
 
   return (
     <BlogContext.Provider value={{ blogsInfo, isLoading }}>
@@ -51,3 +31,4 @@ const BlogContextProvider = (props) => {
 };
 
 export default BlogContextProvider;
+
