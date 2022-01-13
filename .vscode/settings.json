@@ -19,6 +19,7 @@
     "*node_modules": true,
     "*package": true,
     "*package.*": true,
-    "src\\redux": true
+    "src\\redux": true,
+    "public": true
   }
 }

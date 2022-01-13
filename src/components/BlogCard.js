@@ -33,7 +33,7 @@ export default function BlogCard({doc}) {
      
 
             <Card sx={{ maxWidth: 445 }} className="card" >
-        <CardActionArea onClick={()=> navigate('/details')}>
+        <CardActionArea onClick={()=> navigate('/details/${}')}>
           <CardMedia
             component='img'
             height='140'

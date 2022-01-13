@@ -141,8 +141,8 @@ export const addData = async (currentUser, title, content, image) => {
 
 export const readData = async (setData) => {
   const querySnapshot = await getDocs(collection(db, "blogs"));
+  console.log(querySnapshot.docs)
   setData(querySnapshot.docs);
-  // console.log(querySnapshot.docs)
 };
 
 export const updateLike = async (id) => {

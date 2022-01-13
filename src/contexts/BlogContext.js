@@ -14,17 +14,13 @@ const BlogContextProvider = (props) => {
 
   useEffect(() => {
       readData(setData);
-  }, [])
-  console.log(data)
-
-
-
-
-
+    }, [])
+    
+    console.log(data)
 
 
   return (
-    <BlogContext.Provider value={{ blogsInfo, isLoading }}>
+    <BlogContext.Provider value={{ blogsInfo, isLoading,data }}>
       {props.children}
     </BlogContext.Provider>
   );

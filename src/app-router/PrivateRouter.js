@@ -25,10 +25,12 @@ const PrivateRouter = ({isUserSignedIn}) => {
                 
                 <Routes>
                     <Route path="/about" element={<About/>} />
-                    <Route path="/details" element={<Details/>} />
+                    <Route path="/details/:id" element={<Details/>} />
                     <Route path="/new-blog" element={<NewBlog/>} />
-                    <Route path="/profile" element={<Profile/>} />
-                    <Route path="/updateBlog" element={<UpdateBlog/>} />
+                    <Route path="/profile7:id" element={<Profile/>} />
+                    <Route path="/updateBlog/:id" element={<UpdateBlog/>} />
+                    {/*<Route path="*" element={<NotFound/>}/>*/}
+                    
             
                 </Routes>
                 
