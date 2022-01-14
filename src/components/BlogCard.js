@@ -23,7 +23,7 @@ export default function BlogCard({doc}) {
   const { _document } = doc
   // console.log(_document.data.value.mapValue.fields)
    const items = _document.data.value.mapValue.fields 
-  //  console.log(items)
+  //  console.log(items)s
     const {author, comments, content, get_like_count, image, published_date, title} = items
     const slicedDate = published_date.timestampValue.slice(0,10)
 
