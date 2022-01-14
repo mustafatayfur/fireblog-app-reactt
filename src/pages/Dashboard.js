@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BlogCard from '../components/BlogCard'
-import { readData } from '../helpers/firebase'
+import { BlogContext } from '../contexts/BlogContext';
 
 const Dashboard = () => {
 
-    const [data, setData] = useState([])
+    // const [data, setData] = useState([])
 
-    useEffect(() => {
-        readData(setData);
-    }, [])
-    // console.log(data)
+    // useEffect(() => {
+    //     readData(setData);
+    // }, [])
+    // // console.log(data)
+    const { data, isLoading } = useContext(BlogContext);
+
     
 
     return (

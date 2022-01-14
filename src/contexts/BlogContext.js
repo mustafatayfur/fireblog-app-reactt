@@ -1,7 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { collection, query, orderBy, getDocs } from "firebase/firestore";
-import { db, readData } from "../helpers/firebase";
-import { onValue, ref } from "firebase/database";
+import { getBlogWithId, readData } from "../helpers/firebase";
 
 export const BlogContext = createContext();
 
@@ -11,12 +9,14 @@ const BlogContextProvider = (props) => {
 
 
   const [data, setData] = useState([])
+  const [id, setId] = useState()
+
 
   useEffect(() => {
       readData(setData);
     }, [])
     
-    console.log(data)
+    // console.log(data)
 
 
   return (

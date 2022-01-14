@@ -18,6 +18,7 @@ import {
   doc,
   updateDoc,
   increment,
+  getDoc,
 } from "firebase/firestore";
 
   const firebaseConfig = {
@@ -92,7 +93,7 @@ export const userObserver = (setCurrentUser, setPending) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
-      console.log(uid)
+      console.log("currentUserId:",uid)
       setCurrentUser(user);
       setPending(false);
     } else {
@@ -141,8 +142,23 @@ export const addData = async (currentUser, title, content, image) => {
 
 export const readData = async (setData) => {
   const querySnapshot = await getDocs(collection(db, "blogs"));
-  console.log(querySnapshot.docs)
+  // console.log(querySnapshot.docs)
   setData(querySnapshot.docs);
+};
+
+export const getBlogWithId = id => {
+  return async dispatch => {
+    const docRef = doc(db, 'blogs', id);
+    console.log(docRef)
+    const docSnap = await getDoc(docRef);
+
+    // if (docSnap.exists()) {
+    //   dispatch(getBlogAction({ ...docSnap.data(), id: docSnap.id }));
+    // } else {
+    //   // doc.data() will be undefined in this case
+    //   console.log('No such document!');
+    // }
+  };
 };
 
 export const updateLike = async (id) => {

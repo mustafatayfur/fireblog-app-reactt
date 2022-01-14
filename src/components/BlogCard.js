@@ -10,15 +10,16 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
 export default function BlogCard({doc}) {
 
   const navigate = useNavigate()
+  const {blogId} = useParams()
 
 
-  console.log(doc.id)
+  
   const { _document } = doc
   // console.log(_document.data.value.mapValue.fields)
    const items = _document.data.value.mapValue.fields 
@@ -33,7 +34,7 @@ export default function BlogCard({doc}) {
      
 
             <Card sx={{ maxWidth: 445 }} className="card" >
-        <CardActionArea onClick={()=> navigate('/details/${}')}>
+        <CardActionArea onClick={()=> navigate(`/details/${blogId}`)}>
           <CardMedia
             component='img'
             height='140'

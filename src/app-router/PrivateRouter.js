@@ -16,11 +16,9 @@ const PrivateRouter = ({isUserSignedIn}) => {
         return (
             <div>
                  
-                    
                 (<Routes>
                     
                     <Route path="/register" element={<Register/>} />
-
                 </Routes>
                 
                 <Routes>

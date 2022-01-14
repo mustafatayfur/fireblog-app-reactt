@@ -13,7 +13,7 @@ import PrivateRouter from './PrivateRouter'
 
 
 const AppRouter = () => {
-    const [isUserSignedIn, setIsUserSignedIn] = useState(false)
+    
     return (
        <BrowserRouter>
             <Navbar/>
@@ -21,7 +21,7 @@ const AppRouter = () => {
                 <Route path="/" element={<Dashboard/>} />
                 <Route path="/login" element={<Login/>} />
             </Routes>
-            <PrivateRouter isUserSignedIn={isUserSignedIn}/>
+            <PrivateRouter />
 
        </BrowserRouter>
     )
