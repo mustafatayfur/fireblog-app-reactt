@@ -24,7 +24,7 @@ const Details = () => {
 
     return (
 
-        <div>
+        <div className='details'>
         
             {
                 !currentUser ? 
@@ -32,7 +32,7 @@ const Details = () => {
                     navigate('/login')
                 ):
                ( <div>
-                    {data.map((doc,index)=>{
+                    {data.map((doc,index) => {
                         if(doc.id === id){
                             const { _document } = doc
                             // console.log("doc id:",doc.id)
@@ -42,30 +42,29 @@ const Details = () => {
                             const {author, comments, content, get_like_count, image, published_date, title} = items
                             const slicedDate = published_date.timestampValue.slice(0,10)
                             return(
-                                <Card sx={{ maxWidth: 445 }} className="card" key={index} >
+                <Card sx={{ maxWidth: 845 }} className="card" key={index} >
                     <CardActionArea
-                    style={{ cursor: 'pointer' }}
-                    onClick={()=> navigate(`/details/${doc.id}`,{ state: { doc}})}>
+                    >
                       <CardMedia
                         component='img'
-                        height='140'
+                        height='540'
                         image={image.stringValue}
                         alt='blog image'
                       />
-                      <CardContent sx={{background:'#EFEEFE'}}> 
+                      <CardContent sx={{background:'#EFEEFE', height:'auto'}}> 
                         <Typography gutterBottom variant='h5' component='div'>
                           {title.stringValue}
                         </Typography>
                         <Typography>
                             {slicedDate}
                         </Typography>
-                        <Typography variant='body2' color='text.secondary'>
+                        <Typography variant='body2'  color='text.secondary'>
                           {content.stringValue}
                         </Typography>
                       </CardContent>
                     </CardActionArea>
                     <Typography gutterBottom variant='h6' component='div'>
-                      <AccountCircleIcon sx={{ mr: '10px', mb:'-5px', ml:'-160px' }} />
+                      <AccountCircleIcon sx={{ mr: '10px', mb:'-5px', ml:'0px' }} />
                       <span>{author.stringValue}</span>
                     </Typography>
                     <CardActions>
