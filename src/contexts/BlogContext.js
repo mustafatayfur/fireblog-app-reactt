@@ -7,14 +7,9 @@ export function useBlog() {
 }
 
 const BlogContextProvider = (props) => {
-  const [blogsInfo, setBlogsInfo] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-
+ 
   const [data, setData] = useState([])
   
-
-
   useEffect(() => {
       readData(setData);
     }, [])
@@ -23,7 +18,7 @@ const BlogContextProvider = (props) => {
 
 
   return (
-    <BlogContext.Provider value={{ blogsInfo, isLoading,data }}>
+    <BlogContext.Provider value={{ data }}>
       {props.children}
     </BlogContext.Provider>
   );

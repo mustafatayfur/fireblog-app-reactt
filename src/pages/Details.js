@@ -13,7 +13,7 @@ const Details = () => {
     const  navigate = useNavigate()
     const { id } = useParams();
     // console.log("id:",id)
-    const { data, isLoading } = useContext(BlogContext);
+    const { data } = useContext(BlogContext);
     const { currentUser } = useContext(AuthContext);
     
     // console.log(data)  
@@ -75,14 +75,14 @@ const Details = () => {
                       </Button>
                       <div className="detail-button">
                         <button
-                        // onClick={() => deletedInfo(result.id)}
-                         >
-                            Delete
-                        </button>
-                        <button
-                              // onClick={() => editInfo(result.id)}
+                        onClick={()=> navigate(`/updateBlog/${id}`,{ state: { doc}})}
                          >
                             Update
+                         </button>
+                         <button
+                         // onClick={() => editInfo(result.id)}
+                         >
+                            Delete
                         </button>
                      </div>
                     </CardActions>
