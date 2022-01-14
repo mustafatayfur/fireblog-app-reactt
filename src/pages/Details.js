@@ -14,13 +14,9 @@ const Details = () => {
     const { id } = useParams();
     // console.log("id:",id)
     const { data, isLoading } = useContext(BlogContext);
-  const { currentUser } = useContext(AuthContext);
-
-
+    const { currentUser } = useContext(AuthContext);
     
-    
-    console.log(data)
-   
+    // console.log(data)  
 
     return (
 
@@ -31,15 +27,16 @@ const Details = () => {
                 (
                     navigate('/login')
                 ):
-               ( <div>
+            ( <div>
                     {data.map((doc,index) => {
                         if(doc.id === id){
                             const { _document } = doc
-                            // console.log("doc id:",doc.id)
+                            // console.log("doc",doc)
                           
                             const items = _document.data.value.mapValue.fields 
                             // console.log(items)
                             const {author, comments, content, get_like_count, image, published_date, title} = items
+                        
                             const slicedDate = published_date.timestampValue.slice(0,10)
                             return(
                 <Card sx={{ maxWidth: 845 }} className="card" key={index} >
@@ -76,16 +73,30 @@ const Details = () => {
                         <ChatBubbleOutlineIcon />
                         <span>{comments.mapValue.fields.commemt_count.integerValue}</span>
                       </Button>
+                      <div className="detail-button">
+                        <button
+                        // onClick={() => deletedInfo(result.id)}
+                         >
+                            Delete
+                        </button>
+                        <button
+                              // onClick={() => editInfo(result.id)}
+                         >
+                            Update
+                        </button>
+                     </div>
                     </CardActions>
                   </Card>
-                            )
-                        }
+                  
+                )}
                     })
                     }
         
                 </div>)
 
             }
+            
+            
         </div>
         
     )
