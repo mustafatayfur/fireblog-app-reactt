@@ -149,9 +149,9 @@ export const readData = async (setData) => {
 export const getBlogWithId = id => {
   return async dispatch => {
     const docRef = doc(db, 'blogs', id);
-    console.log(docRef)
+    
     const docSnap = await getDoc(docRef);
-
+    
     // if (docSnap.exists()) {
     //   dispatch(getBlogAction({ ...docSnap.data(), id: docSnap.id }));
     // } else {

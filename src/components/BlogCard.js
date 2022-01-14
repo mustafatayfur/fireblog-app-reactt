@@ -16,8 +16,8 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function BlogCard({doc}) {
 
   const navigate = useNavigate()
-  const {blogId} = useParams()
-
+  // const {blogId} = useParams()
+// console.log(blogId)
 
   
   const { _document } = doc
@@ -34,7 +34,9 @@ export default function BlogCard({doc}) {
      
 
             <Card sx={{ maxWidth: 445 }} className="card" >
-        <CardActionArea onClick={()=> navigate(`/details/${blogId}`)}>
+        <CardActionArea
+        style={{ cursor: 'pointer' }}
+        onClick={()=> navigate(`/details/${doc.id}`,{ state: { doc}})}>
           <CardMedia
             component='img'
             height='140'
