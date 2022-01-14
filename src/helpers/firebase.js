@@ -55,10 +55,10 @@ export const logIn = (email, password) => {
     })
     .catch((error) => {
       const errorCode = error.code;
-      if (errorCode == "auth/user-not-found") {
+      if (errorCode === "auth/user-not-found") {
         alert("Please sign up to continue!");
       }
-      if (errorCode == "auth/wrong-password") {
+      if (errorCode === "auth/wrong-password") {
         alert("Invalid password!");
       }
     });

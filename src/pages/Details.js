@@ -10,22 +10,30 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 
 const Details = () => {
-    const [currentBlogs, setCurrentBlogs] = useState();
     const  navigate = useNavigate()
     const { id } = useParams();
-    // console.log(id)
-    const { getOneBlog, deleteOneBlog } = useBlog();
-    
+    console.log("id:",id)
+    const { data, isLoading } = useContext(BlogContext);
 
+    
+    
+    console.log(data)
    
 
     return (
         
         <div>
-        
-        
-        {doc.id === id && 
-            <Card sx={{ maxWidth: 445 }} className="card" >
+            {data.map((doc,index)=>{
+                if(doc.id === id){
+                    const { _document } = doc
+                    console.log("doc id:",doc.id)
+                    // console.log(_document.data.value.mapValue.fields)
+                    const items = _document.data.value.mapValue.fields 
+                    // console.log(items)
+                    const {author, comments, content, get_like_count, image, published_date, title} = items
+                    const slicedDate = published_date.timestampValue.slice(0,10)
+                    return(
+                        <Card sx={{ maxWidth: 445 }} className="card" key={index} >
             <CardActionArea
             style={{ cursor: 'pointer' }}
             onClick={()=> navigate(`/details/${doc.id}`,{ state: { doc}})}>
@@ -40,7 +48,7 @@ const Details = () => {
                   {title.stringValue}
                 </Typography>
                 <Typography>
-                    {published_date}
+                    {slicedDate}
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
                   {content.stringValue}
@@ -62,8 +70,11 @@ const Details = () => {
               </Button>
             </CardActions>
           </Card>
-        }          
-          
+                    )
+                }
+            })
+            }
+
         </div>
     )
 }
