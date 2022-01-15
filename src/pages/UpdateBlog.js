@@ -54,7 +54,7 @@ const UpdateBlog = () => {
       <div>
 
         {info.map((doc,index) => {
-          console.log(doc)
+          // console.log(doc)
         if(doc.title === title){
            
             return(
