@@ -12,14 +12,28 @@ import { collection, onSnapshot } from 'firebase/firestore';
 const UpdateBlog = () => {
     
     const [info, setInfo] = useState([])
+    const [docs, setDocs] = useState({})
+
     const navigate = useNavigate();
     const { id } = useParams();
-    const { data, title } = useContext(BlogContext);
+    const { data } = useContext(BlogContext);
     console.log("blogContex title:", title)
 
 
     console.log("id:",id)
     console.log("data:",data)
+
+    useEffect(() => {
+      setDocs(data?.find((docs) => docs.id === id));
+    }, [docs]);
+    const { _document } = docs
+    // console.log("doc",doc)
+  
+    const items = _document.data.value.mapValue.fields 
+    // console.log(items)
+    const { content, get_like_count, image, published_date, title} = items
+    // setTitle(title)
+    const slicedDate = published_date.timestampValue.slice(0,10)
 
     useEffect(
       () => 

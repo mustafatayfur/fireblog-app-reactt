@@ -37,7 +37,7 @@ const BlogContextProvider = (props) => {
 
 
   return (
-    <BlogContext.Provider value={{ data, title }}>
+    <BlogContext.Provider value={{ data}}>
       {props.children}
     </BlogContext.Provider>
   );
