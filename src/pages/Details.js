@@ -16,7 +16,7 @@ const Details = () => {
     const { data } = useContext(BlogContext);
     const { currentUser } = useContext(AuthContext);
     
-    // console.log(data)  
+    console.log("details data:",data)  
 
     return (
 
@@ -31,7 +31,7 @@ const Details = () => {
                     {data.map((doc,index) => {
                         if(doc.id === id){
                             const { _document } = doc
-                            // console.log("doc",doc)
+                            console.log("details doc:",doc)
                           
                             const items = _document.data.value.mapValue.fields 
                             // console.log(items)

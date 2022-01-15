@@ -1,31 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import BlogCard from '../components/BlogCard'
 import { BlogContext } from '../contexts/BlogContext';
 
 const Dashboard = () => {
 
-    // const [data, setData] = useState([])
-
-    // useEffect(() => {
-    //     readData(setData);
-    // }, [])
-    // // console.log(data)
-    const { data, isLoading } = useContext(BlogContext);
-
-    
+    const { data } = useContext(BlogContext);
+    console.log("dasboard data:", data)
 
     return (
         <div className='App' >
             <h1>DASHBOARD</h1>
-         
-            {data.map((doc)=>(
-                <BlogCard doc={doc} key={doc.id}/>
-            ))}
+           
+           
             
         </div>
     )
 }
 
 export default Dashboard
-
-// _userDataWriter

@@ -12,8 +12,7 @@ const PrivateRouter = () => {
     
         return (
             <div>
-                 
-                (<Routes>
+                <Routes>
                     
                     <Route path="/register" element={<Register/>} />
                 </Routes>
@@ -22,16 +21,15 @@ const PrivateRouter = () => {
                     <Route path="/about" element={<About/>} />
                     <Route path="/details/:id" element={<Details/>} />
                     <Route path="/new-blog" element={<NewBlog/>} />
-                    <Route path="/profile7:id" element={<Profile/>} />
+                    <Route path="/profile:id" element={<Profile/>} />
                     <Route path="/updateBlog/:id" element={<UpdateBlog/>} />
                     {/*<Route path="*" element={<NotFound/>}/>*/}
                     
             
                 </Routes>
                 
-            
             </div>
-         )
+        )
     
     
 }

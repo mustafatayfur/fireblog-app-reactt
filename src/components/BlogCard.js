@@ -28,7 +28,6 @@ export default function BlogCard({doc}) {
     const {author, comments, content, get_like_count, image, published_date, title} = items
     const slicedDate = published_date.timestampValue.slice(0,10)
 
-  
 
   return (
     <div className='App'>
