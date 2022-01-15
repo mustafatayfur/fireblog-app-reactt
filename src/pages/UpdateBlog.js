@@ -17,14 +17,14 @@ const UpdateBlog = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { data } = useContext(BlogContext);
-    console.log("blogContex title:", title)
+    console.log("blogContex title:", docs)
 
 
     console.log("id:",id)
     console.log("data:",data)
 
     useEffect(() => {
-      setDocs(data?.find((docs) => docs.id === id));
+      setDocs(data?.map((docs) => docs.id === id && docs));
     }, [docs]);
     const { _document } = docs
     // console.log("doc",doc)

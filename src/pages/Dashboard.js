@@ -5,13 +5,15 @@ import { BlogContext } from '../contexts/BlogContext';
 const Dashboard = () => {
 
     const { data } = useContext(BlogContext);
-    console.log("dasboard data:", data)
+    console.log("dashBoard data:",data)
 
     return (
-        <div className='App' >
-            <h1>DASHBOARD</h1>
-           
-           
+        <div className='App'>
+            {data.map((doc)=>
+             (
+            <BlogCard doc={doc} key={doc.id}/>
+            )
+            )}
             
         </div>
     )
