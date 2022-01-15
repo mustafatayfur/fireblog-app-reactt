@@ -21,7 +21,6 @@ const Details = () => {
     return (
 
         <div className='details'>
-        
             {
                 !currentUser ? 
                 (
