@@ -9,6 +9,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+import { getDatabase, ref, update } from "firebase/database";
 
 import {
   getFirestore,
@@ -159,6 +160,16 @@ export const getBlogWithId = id => {
     //   console.log('No such document!');
     // }
   };
+};
+
+export const updateInfo = (info) => {
+  const db = getDatabase();
+
+  const updates = {};
+  updates["blogs/" + info.id] = info;
+  console.log("update edildi")
+
+  return update(ref(db), updates);
 };
 
 export const updateLike = async (id) => {
