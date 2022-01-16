@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
+// import Avatar from "@material-ui/core/Avatar";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import blokPng from "../assets/blok.png";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
@@ -108,9 +108,9 @@ const LoginAndRegisterForm = (props) => {
       <Grid container justifyContent="center" className={classes.image}>
         <Grid item component={Paper} elevation={6} square xs={12} sm={8} md={6}>
           <Grid className={classes.paper}>
-            <Avatar className={classes.avatar}>
+            <avatar className={classes.avatar}>
               <img src={blokPng} style={{ width: 200 }} alt="candela" />
-            </Avatar>
+            </avatar>
             <Typography className={classes.header} component="h1" variant="h5">
               ── {props.method} ──
             </Typography>
@@ -187,16 +187,16 @@ const LoginAndRegisterForm = (props) => {
 };
 
 const Autorization = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { signup, login, currentUser } = useAuth();
   const [method] = useState(props.method);
 
   useEffect(() => {
     if (currentUser) {
-      history.push("/");
+      navigate("/");
     }
     console.log({ currentUser });
-  }, [currentUser, history]);
+  }, [currentUser, navigate]);
 
   return (
     <div>
@@ -211,7 +211,7 @@ const Autorization = (props) => {
             login(values.email, values.password)
               .then(() => {
                 toastSuccessNotify(`${method} Successfully performed!`);
-                history.push("/");
+                navigate("/");
                 actions.setSubmitting(false);
               })
               .catch((error) => {
@@ -223,7 +223,7 @@ const Autorization = (props) => {
             signup(values.email, values.password)
               .then(() => {
                 toastSuccessNotify(`${method} Successfully performed!`);
-                history.push("/");
+                navigate("/");
                 actions.setSubmitting(false);
               })
               .catch((error) => {

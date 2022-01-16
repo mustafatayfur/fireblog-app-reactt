@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 import placeholderPng from "../assets/placeholder.png";
 import { useBlog } from "../context/BlogContextProvider";
 import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import BlogForm from "../components/BlogForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,11 +40,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#046582",
   },
 }));
-const UpdateBlog = ({ match }) => {
+const UpdateBlog = () => {
+  const {id} = useParams()
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { getOneBlog, updateBlog } = useBlog();
-  const result = getOneBlog(match.params.id);
+  const result = getOneBlog(id);
 
   const res = useMemo(() => {
     return result ? result[0] : { title: "", content: "", image: "" };
@@ -59,7 +60,7 @@ const UpdateBlog = ({ match }) => {
   const handler = (blogToUpdate) => {
     try {
       updateBlog(res?.id, blogToUpdate);
-      history.push("/");
+      navigate("/");
       toastSuccessNotify("Blog Updated");
     } catch (error) {
       toastErrorNotify("Blog can not be Updated");

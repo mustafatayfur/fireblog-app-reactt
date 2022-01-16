@@ -14,7 +14,7 @@ import moment from "moment";
 import { useBlog } from "../context/BlogContextProvider";
 import { useAuth } from "../context/AuthContextProvider";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toastSuccessNotify } from "../utils/ToastNotify";
 
 const useStyles = makeStyles({
@@ -63,23 +63,24 @@ const useStyles = makeStyles({
   },
 });
 
-const Detail = ({ match }) => {
+const Detail = () => {
+  const {id}= useParams()
   const classes = useStyles();
   const { currentUser } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { getOneBlog, deleteOneBlog } = useBlog();
-  const result = getOneBlog(match.params.id);
-  console.log(result);
+  const result = getOneBlog(id);
+  console.log("Result:",result);
 
   const deleteHandler = (id) => {
     deleteOneBlog(id);
-    history.push("/");
+    navigate("/");
     toastSuccessNotify("Deleted successfully!");
   };
 
   const updateHandler = (id) => {
-    history.push(`/update-blog/${id}`);
+    navigate(`/updateBlog/${id}`);
   };
 
   return (
@@ -88,8 +89,10 @@ const Detail = ({ match }) => {
         ──── Details ────
       </Typography>
       {result?.length > 0 &&
-        result?.map((item, index) => (
-          <div key={index}>
+        result?.map((item, index) => {
+          if(item.id === id)
+          return (
+            <div key={index}>
             <Card className={classes.cardRoot}>
               <div>
                 <CardMedia
@@ -164,7 +167,9 @@ const Detail = ({ match }) => {
               </div>
             )}
           </div>
-        ))}
+          )
+         
+            })}
     </div>
   );
 };

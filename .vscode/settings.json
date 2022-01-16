@@ -5,7 +5,6 @@
     "*.git.*": true,
     "*.vscode": true,
     "*.vscode.*": true,
-    "*node_modules.*": true,
     "*package-lock": true,
     "*package-lock.*": true,
     "*public.*": true,
@@ -14,9 +13,6 @@
     "*src.*": true,
     "*yarn": true,
     "*yarn.*": true,
-    "*node_modules": true,
-    "*package": true,
-    "*package.*": true,
     "src\\redux": true,
     "public": true
   }

@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import blogPng from "../assets/blok.png";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useBlog } from "../context/BlogContextProvider";
 import { useAuth } from "../context/AuthContextProvider";
 import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
@@ -37,12 +37,12 @@ const NewBlog = () => {
   const classes = useStyles();
   const { currentUser } = useAuth();
   const { addBlog } = useBlog();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handler = (newBlog) => {
     try {
       addBlog(newBlog);
-      history.push("/");
+      navigate("/");
       toastSuccessNotify("Blog added");
     } catch (error) {
       toastErrorNotify("Blog can not be added");

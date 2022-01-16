@@ -7,9 +7,9 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import cwLogo from "../assets/cw.jpeg";
+import cwLogo from "../assets/blogpost.jpeg";
 import { useAuth } from "../context/AuthContextProvider";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +54,7 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   let { currentUser, logout } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   //!Just for testing purpose
   // currentUser = {
@@ -77,7 +77,7 @@ export default function Navbar() {
   };
   const handleDashboard = () => {
     setAnchorEl(null);
-    history.push("/");
+    navigate("/");
   };
 
   return (

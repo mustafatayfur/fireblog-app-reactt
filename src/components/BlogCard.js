@@ -9,14 +9,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteBorderIcon from "@material-ui/icons/Favorite";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import placeholder from "../assets/placeholder.png";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import moment from "moment";
 import { useAuth } from "../context/AuthContextProvider";
 import { toastErrorNotify } from "../utils/ToastNotify";
-import { Button } from "@mui/material";
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -64,7 +64,7 @@ export default function BlogCard({item}) {
   } = item;
 
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { currentUser } = useAuth();
 
   const openDetails = () => {
@@ -72,7 +72,7 @@ export default function BlogCard({item}) {
       toastErrorNotify("Please Login to get the details");
     }
     // if user doenst exist it is routed to the login page via PrivateRouter
-    history.push(`/detail/${id}`);
+    navigate(`/detail/${id}`);
   };
 
 
