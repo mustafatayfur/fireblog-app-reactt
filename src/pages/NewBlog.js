@@ -1,35 +1,78 @@
-import React, {useState, useContext } from 'react'
-import { AuthContext } from "../contexts/AuthContextProvider";
-import { addData} from './../helpers/firebase';
-import BlogForm from '../components/BlogForm' 
-import { addInfo, updateInfo } from "../helpers/functions"
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import blogPng from "../assets/blok.png";
+import { useHistory } from "react-router-dom";
+import { useBlog } from "../context/BlogContextProvider";
+import { useAuth } from "../context/AuthContextProvider";
+import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
+import BlogForm from "../components/BlogForm";
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(4),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    padding: theme.spacing(13),
+    backgroundColor: "#046582",
+  },
+  blogImg: {
+    width: 200,
+  },
+
+  title: {
+    fontSize: 35,
+    fontFamily: "Girassol",
+    color: "#046582",
+  },
+}));
 
 const NewBlog = () => {
+  const classes = useStyles();
+  const { currentUser } = useAuth();
+  const { addBlog } = useBlog();
+  const history = useHistory();
 
-    const { currentUser } = useContext(AuthContext);
-    const [title, setTitle] = useState("")
-    const [imageUrl, setImageUrl] = useState("")
-    const [content, setContent] = useState("")
-
-    const handleClick = () => {
-        addData(currentUser,title,content,imageUrl);
-        setTitle("")
-        setContent("")
-        setImageUrl("")
+  const handler = (newBlog) => {
+    try {
+      addBlog(newBlog);
+      history.push("/");
+      toastSuccessNotify("Blog added");
+    } catch (error) {
+      toastErrorNotify("Blog can not be added");
     }
-   
-    return (
-        <BlogForm
-            handleClick={handleClick}
-            setContent= {setContent}
-            setImageUrl= {setImageUrl}
-            setTitle= {setTitle}
-            title={title}
-            imageUrl={imageUrl}
-            content={content}
-        />
-    )
-}
+  };
 
-export default NewBlog
+  const blog = {
+    author: currentUser.email,
+    title: "",
+    content: "",
+    get_comment_count: 0,
+    get_like_count: 0,
+    image: "",
+    published_date: Date.now(),
+  };
+
+  return (
+    <Container maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <img src={blogPng} alt="blog" className={classes.blogImg} />
+        </Avatar>
+        <Typography component="h1" variant="h5" className={classes.title}>
+          ── New Blog ──
+        </Typography>
+      </div>
+      <BlogForm blog={blog} handler={handler} />
+    </Container>
+  );
+};
+
+export default NewBlog;

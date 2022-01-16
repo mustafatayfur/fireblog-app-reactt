@@ -1,47 +1,74 @@
-/** @format */
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import { useAuth } from "../context/AuthContextProvider";
 
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    maxWidth: 500,
+    width: "50%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: 25,
+  },
 
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  mainDiv: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 500,
+    marginTop: 100,
+  },
+  image: {
+    borderRadius: "50%",
+    width: "100px",
+  },
+});
+const Profile = () => {
+  const classes = useStyles();
+  const { currentUser } = useAuth();
+  console.log(currentUser);
 
-const bull = (
-  <Box
-    component='span'
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}>
-    •
-  </Box>
-);
-
-export default function BasicCard() {
   return (
-    <div className='profileCard'>
-      <Card sx={{ width: 375, height: 300, background: '#E2ECF2' }} variant="outlined">
+    <div className={classes.mainDiv}>
+      <Card className={classes.root}>
+        <img
+          src={currentUser.photoURL}
+          className={classes.image}
+          alt="profile"
+        />
         <CardContent>
-        
-          <Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-            Word of the Day
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Display Name
           </Typography>
-          <Typography variant='h5' component='div'>
-            be{bull}nev{bull}o{bull}lent
+          <Typography variant="h5" component="h2">
+            {currentUser?.displayName || "Not Found!"}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-            adjective
+          <Typography className={classes.pos} color="textSecondary">
+            Email
           </Typography>
-          <Typography variant='body2'>
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
+          <Typography variant="body2" component="p">
+            {currentUser?.email || "Not Found!"}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size='small'>Learn More</Button>
-        </CardActions>
       </Card>
     </div>
   );
-}
+};
+
+export default Profile;
