@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import BlogCard from '../components/BlogCard'
-import { BlogContext } from '../contexts/BlogContext';
+import { BlogContext } from '../contexts/BlogContextProvider';
 
 const Dashboard = () => {
 

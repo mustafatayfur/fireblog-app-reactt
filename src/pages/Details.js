@@ -11,12 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { BlogContext } from "../contexts/BlogContext";
+import { BlogContext } from "../contexts/BlogContextProvider";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContextProvider";
 
 const Details = () => {
   const navigate = useNavigate();

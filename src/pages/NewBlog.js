@@ -1,5 +1,5 @@
 import React, {useState, useContext } from 'react'
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContextProvider";
 import { addData} from './../helpers/firebase';
 import BlogForm from '../components/BlogForm' 
 import { addInfo, updateInfo } from "../helpers/functions"

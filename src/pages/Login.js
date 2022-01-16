@@ -2,7 +2,7 @@
 
 import React, { useState, useContext } from "react";
 import { continueWithGoogle, logIn } from './../helpers/firebase';
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContextProvider";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Avatar, Button } from "@mui/material";

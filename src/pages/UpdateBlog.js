@@ -2,8 +2,8 @@ import { Avatar, Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
-import { BlogContext } from '../contexts/BlogContext';
+import { AuthContext } from '../contexts/AuthContextProvider';
+import { BlogContext } from '../contexts/BlogContextProvider';
 import { db, updateInfo } from '../helpers/firebase';
 import blog from "../assets/blogpost.jpeg";
 import { collection, onSnapshot } from 'firebase/firestore';

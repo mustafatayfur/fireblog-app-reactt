@@ -2,7 +2,7 @@
 
 import { useState, useContext } from "react";
 import { continueWithGoogle, createUser } from './../helpers/firebase';
-import { AuthContext } from "../contexts/AuthContext"
+import { AuthContext } from "../contexts/AuthContextProvider"
 import { useNavigate } from "react-router-dom";
 import { Avatar, Box, Button, TextField } from "@mui/material";
 import blog from "../assets/blogpost.jpeg";
