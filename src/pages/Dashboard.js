@@ -8,15 +8,23 @@ const Dashboard = () => {
     console.log("dashBoard data:",data)
 
     return (
-        <div className='App'>
-            {data.map((doc)=>
-             (
-            <BlogCard doc={doc} key={doc.id}/>
-            )
-            )}
+        <div>
             
+          
+            {
+                data?.map((doc,index)=>{
+                    return (
+                        <div key={index}>
+                        <BlogCard doc={doc} />
+                        </div>
+                       
+                    )
+                })
+            }
         </div>
     )
 }
 
 export default Dashboard
+
+ 

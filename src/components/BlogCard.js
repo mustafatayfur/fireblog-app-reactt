@@ -1,76 +1,131 @@
 
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteBorderIcon from "@material-ui/icons/Favorite";
+import { useHistory } from "react-router-dom";
+import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import placeholder from "../assets/placeholder.png";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import moment from "moment";
+import { useAuth } from "../context/AuthContextProvider";
+import { toastErrorNotify } from "../utils/ToastNotify";
+import { Button } from "@mui/material";
 
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+const useStyles = makeStyles(() => ({
+  root: {
+    minWidth: 345,
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+  module: {
+    display: "-webkit-box",
+    "-webkit-line-clamp": 2,
+    "-webkit-box-orient": "vertical",
+    "text-overflow": "ellipsis",
+    overflow: "hidden",
+  },
+  image: {
+    padding: 3,
+  },
+  avatar: {
+    marginBottom: "0.35em",
+  },
+  cardContent: {
+    backgroundColor: "#efeefe",
+    height: "125px",
+  },
+  title: {
+    fontFamily: "Girassol",
+    color: "#046582",
+  },
+}));
 
-import { useNavigate } from "react-router-dom";
 
+export default function BlogCard({item}) {
 
-export default function BlogCard({doc}) {
+  const {
+    id,
+    author,
+    content,
+    get_comment_count,
+    get_like_count,
+    image,
+    published_date,
+    title,
+  } = item;
 
-  const navigate = useNavigate()
-  // const {blogId} = useParams()
-// console.log(blogId)
+  const classes = useStyles();
+  const history = useHistory();
+  const { currentUser } = useAuth();
 
-  
-  const { _document } = doc
-  console.log("doc id:", doc.id)
-  // console.log(_document.data.value.mapValue.fields)
-   const items = _document.data.value.mapValue.fields 
-  //  console.log(items)
-    const {author, comments, content, get_like_count, image, published_date, title} = items
-    const slicedDate = published_date.timestampValue.slice(0,10)
+  const openDetails = () => {
+    if (!currentUser) {
+      toastErrorNotify("Please Login to get the details");
+    }
+    // if user doenst exist it is routed to the login page via PrivateRouter
+    history.push(`/detail/${id}`);
+  };
+
 
 
   return (
-    <div className='App'>
+    
      
 
-            <Card sx={{ maxWidth: 445 }} className="card" >
-        <CardActionArea
-        style={{ cursor: 'pointer' }}
-        onClick={()=> navigate(`/details/${doc.id}`,{ state: { doc}})}>
-          <CardMedia
-            component='img'
-            height='140'
-            image={image.stringValue}
-            alt='blog image'
-          />
-          <CardContent sx={{background:'#EFEEFE'}}> 
-            <Typography gutterBottom variant='h5' component='div'>
-              {title.stringValue}
-            </Typography>
-            <Typography>
-                {slicedDate}
-            </Typography>
-            <Typography variant='body2' color='text.secondary'>
-              {content.stringValue}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <Typography gutterBottom variant='h6' component='div'>
-          <AccountCircleIcon sx={{ mr: '10px', mb:'-5px', ml:'-160px' }} />
-          <span>{author.stringValue}</span>
+    <Card className={classes.root}>
+    <CardActionArea onClick={openDetails}>
+      <CardMedia
+        className={classes.media}
+        image={image || placeholder}
+        title={title}
+      />
+
+      <CardContent className={classes.cardContent}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          className={classes.title}
+        >
+          {title}
         </Typography>
-        <CardActions>
-          <Button>
-            <FavoriteBorderIcon />
-            <span>{get_like_count.integerValue}</span>
-          </Button>
-          <Button>
-            <ChatBubbleOutlineIcon />
-            <span>{comments.mapValue.fields.commemt_count.integerValue}</span>
-          </Button>
-        </CardActions>
-      </Card>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {moment(published_date).format("MMM DD, YYYY")}
+        </Typography>
+        <p className={classes.module}>{content}</p>
+      </CardContent>
+    </CardActionArea>
+    <CardActions>
+      <AccountCircleIcon className={classes.avatar} />
+      <Typography gutterBottom variant="h6" component="h2">
+        {author}
+      </Typography>
+    </CardActions>
+    <CardActions>
+      <IconButton aria-label="add to favorites" className={classes.image}>
+        <FavoriteBorderIcon color={get_like_count > 0 ? "secondary" : "disabled"} />
+      </IconButton>
+      <Typography variant="body2" color="textSecondary">
+        {get_like_count}
+      </Typography>
+      <IconButton aria-label="comment count" className={classes.image}>
+        <ChatBubbleOutlineIcon />
+      </IconButton>
+      <Typography variant="body2" color="textSecondary">
+        {get_comment_count}
+      </Typography>
+    </CardActions>
+  </Card>
           
-    </div>
+    
   );
 }

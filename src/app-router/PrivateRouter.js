@@ -1,37 +1,21 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import About from '../pages/About'
-import Details from '../pages/Details'
-import NewBlog from '../pages/NewBlog'
-import Profile from '../pages/Profile'
-import Register from '../pages/Register'
-import UpdateBlog from '../pages/UpdateBlog'
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+import { useAuth } from "../context/AuthContextProvider";
 
+const PrivateRouter = (props) => {
+  console.log("props: ", props);
+  let { currentUser } = useAuth();
 
-const PrivateRouter = () => {
-    
-        return (
-            <div>
-                <Routes>
-                    
-                    <Route path="/register" element={<Register/>} />
-                </Routes>
-                
-                <Routes>
-                    <Route path="/about" element={<About/>} />
-                    <Route path="/details/:id" element={<Details/>} />
-                    <Route path="/new-blog" element={<NewBlog/>} />
-                    <Route path="/profile:id" element={<Profile/>} />
-                    <Route path="/updateBlog/:id" element={<UpdateBlog/>} />
-                    {/*<Route path="*" element={<NotFound/>}/>*/}
-                    
-            
-                </Routes>
-                
-            </div>
-        )
-    
-    
-}
+  //!Just for testing purpose
+  // currentUser = {
+  //   email: "a@gmailcom",
+  // };
 
-export default PrivateRouter
+  return currentUser ? (
+    <Route path={props.path} component={props.component} />
+  ) : (
+    <Redirect to="/login" />
+  );
+};
+
+export default PrivateRouter;

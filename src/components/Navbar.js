@@ -1,31 +1,67 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { Avatar } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { logOut } from '../helpers/firebase';
-import { AuthContext } from '../contexts/AuthContext'
-import blog from '../assets/blogpost.jpeg'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import cwLogo from "../assets/cw.jpeg";
+import { useAuth } from "../context/AuthContextProvider";
+import { Link, useHistory } from "react-router-dom";
 
-export default function MenuAppBar() {
-  const { currentUser } = React.useContext(AuthContext) 
-  
-  console.log("NavbarCurrentUser :",currentUser)
-  // const [displayToggle, setDisplayToggle] = React.useState(false);
-  const [auth, setAuth] = React.useState(true);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+    display: "none",
+    fontFamily: "Girassol",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+    "& span": {
+      fontSize: 30,
+      color: "wheat",
+    },
+  },
+  appBar: {
+    backgroundColor: "#046582",
+  },
+  logo: {
+    width: 40,
+  },
+  linkStyle: {
+    textDecoration: "none",
+    color: "black",
+  },
+
+  login: {
+    padding: 10,
+    fontSize: 20,
+    color: "white",
+    textDecoration: "none",
+  },
+}));
+
+export default function Navbar() {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  let { currentUser, logout } = useAuth();
+  const history = useHistory();
 
-  const navigate = useNavigate();
+  //!Just for testing purpose
+  // currentUser = {
+  //   email: "a@gmailcom",
+  // };
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  console.log(currentUser);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,83 +71,99 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout();
+  };
+  const handleDashboard = () => {
+    setAnchorEl(null);
+    history.push("/");
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-     
-      <AppBar position="static" sx={{ height: 100 }}>
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-        <Link to='/' sx={{ p: 0}}>
-            <IconButton  sx={{ p: 0, height: 100 }}>
-                    <Avatar sx={{ height: 90, width: 90 }} alt="blog" src={blog} />
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDashboard}
+          >
+            <img src={cwLogo} alt="logo" className={classes.logo} />
+          </IconButton>
+          <div className={classes.root}>
+            <Link to="/" className={classes.login}>
+              <Typography variant="h6" className={classes.title}>
+                ──── <span>{"<Clarusway IT />"}</span> BLOG ────
+              </Typography>
+            </Link>
+          </div>
+
+          <div>
+            <IconButton
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle style={{ fontSize: "40px" }} />
             </IconButton>
-              
-        </Link>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, ml:4 }}>
-            <h2>TayfurAcademy</h2>
-          </Typography>
-          {auth && (
-            <div className='icon'>
-              <div>
-              <h2>{currentUser.email}</h2>
-              </div>
-              <IconButton
-        
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle sx={{ height: 50, width: 50 }} />
-              </IconButton>
-              
+            {currentUser?.email ? (
               <Menu
-              sx={{ mt: '70px' }}
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
-                open={Boolean(anchorEl)}
+                open={open}
                 onClose={handleClose}
               >
-              
-              {!currentUser ? 
-                <>
-                <Link to='/login'>
-                <MenuItem onClick={handleClose}>Login</MenuItem>
+                <Link to="/profile" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </Link>
-                <Link to='/register'>
-                <MenuItem onClick={handleClose}>Register</MenuItem>
+                <Link to="/new-blog" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>New Blog</MenuItem>
                 </Link>
-                </>
-                :
-                <>
-                <Link to='/profile'>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <Link to="/login" className={classes.linkStyle}>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Link>
-                <Link to='/new-blog'>
-                <MenuItem onClick={handleClose}>New</MenuItem>
-                </Link>
-                <Link to='/'>
-                <MenuItem onClick={()=> logOut()}>Logout</MenuItem>
-                </Link>
-                </>
-                
-              }
-                
               </Menu>
-            </div>
-          )}
+            ) : (
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <Link to="/login" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Login</MenuItem>
+                </Link>
+                <Link to="/register" className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Register</MenuItem>
+                </Link>
+              </Menu>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
-    </Box>
+    </div>
   );
 }

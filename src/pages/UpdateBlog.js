@@ -17,23 +17,29 @@ const UpdateBlog = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const { data } = useContext(BlogContext);
-    console.log("blogContex title:", docs)
+    console.log("blogContex docs:",docs )
 
 
     console.log("id:",id)
     console.log("data:",data)
 
-    useEffect(() => {
-      setDocs(data?.map((docs) => docs.id === id && docs));
-    }, [docs]);
-    const { _document } = docs
-    // console.log("doc",doc)
+    // useEffect(() => {
+    //   // setDocs(data?.map((docs) => docs.id === id && docs));
+    //   data.map((docs)=> {
+    //     if(docs.id === id){
+    //         setDocs(docs)
+    //     }
+    //   })
+    // },[]);
+
+    // const { _document } = docs
+   
   
-    const items = _document.data.value.mapValue.fields 
-    // console.log(items)
-    const { content, get_like_count, image, published_date, title} = items
-    // setTitle(title)
-    const slicedDate = published_date.timestampValue.slice(0,10)
+    // const items = _document.data.value.mapValue.fields 
+    // // console.log(items)
+    // const { content, get_like_count, image, published_date, title} = items
+    //   console.log("update title",title)
+    // const slicedDate = published_date.timestampValue.slice(   0,10)
 
     useEffect(
       () => 
@@ -69,7 +75,7 @@ const UpdateBlog = () => {
 
         {info.map((doc,index) => {
           // console.log(doc)
-        if(doc.title === title){
+        if(doc.id === docs.id){
            
             return(
                 <Box
@@ -84,7 +90,7 @@ const UpdateBlog = () => {
                   
                     id='outlined-basic'
                     label='Title'
-                    name={title}
+                    name='title'
                     variant='outlined'
                     value={doc.title}
                     onChange={handleInfoChange}

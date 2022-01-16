@@ -125,6 +125,7 @@ export const db = getFirestore();
 export const addData = async (currentUser, title, content, image) => {
   try {
     const docRef = await addDoc(collection(db, "blogs"), {
+    
       author: currentUser.email,
       title: title,
       content: content,
