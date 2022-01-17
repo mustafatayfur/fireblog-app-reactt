@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   avatar: {
     padding: theme.spacing(13),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -15,17 +15,17 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
     color: "white",
     fontWeight: "bold",
     "&:hover": {
-      color: "#046582",
+      color: "#2167bb",
     },
   },
   title: {
     fontSize: 35,
-    fontFamily: "Girassol",
-    color: "#046582",
+    fontFamily: "system-ui",
+    color: "#2167bb",
   },
 }));
 

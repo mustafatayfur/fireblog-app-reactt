@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: theme.spacing(25),
     height: theme.spacing(25),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
+   
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -52,17 +53,17 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
     color: "white",
     fontWeight: "bold",
     "&:hover": {
-      color: "#046582",
+      color: "#2167bb",
     },
   },
   header: {
     fontFamily: "Girassol",
     textAlign: "center",
-    color: "#046582",
+    color: "#2167bb",
   },
   loadingGif: {
     width: 75,

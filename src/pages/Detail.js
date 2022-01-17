@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
   cardRoot: {
     minWidth: 250,
-    width: "75vw",
+    width: "40vw",
     // maxWidth: 700,
   },
   media: {
@@ -45,12 +45,13 @@ const useStyles = makeStyles({
   cardContent: {
     backgroundColor: "#efeefe",
     minHeight: "200px",
+    textAlign: "left",
   },
   title: {
-    fontFamily: "Girassol",
-    textAlign: "center",
+    fontFamily: "system-ui",
+    textAlign: "left",
     margin: 20,
-    color: "#046582",
+    color: "#2167bb",
   },
   buttonGroup: {
     display: "flex",
@@ -59,7 +60,7 @@ const useStyles = makeStyles({
     margin: 20,
   },
   dataStyle: {
-    textAlign: "center",
+    textAlign: "left",
   },
 });
 
@@ -85,8 +86,8 @@ const Detail = () => {
 
   return (
     <div className={classes.root}>
-      <Typography className={classes.title} variant="h3" noWrap>
-        ──── Details ────
+      <Typography className={classes.title} variant="h4" noWrap>
+        Details
       </Typography>
       {result?.length > 0 &&
         result?.map((item, index) => {
@@ -153,6 +154,7 @@ const Detail = () => {
               <div className={classes.buttonGroup}>
                 <Button
                   variant="contained"
+                  color="primary" 
                   onClick={() => updateHandler(item.id)}
                 >
                   Update

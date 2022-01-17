@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     fontFamily: "system-ui",
-    textAlign: "center",
     color: "#2167bb",
+    textAlign: "center",
   },
   mainRoot: {
     marginTop: 35,

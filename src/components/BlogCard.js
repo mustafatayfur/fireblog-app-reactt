@@ -44,8 +44,8 @@ const useStyles = makeStyles(() => ({
     height: "125px",
   },
   title: {
-    fontFamily: "Girassol",
-    color: "#046582",
+    fontFamily: "system-ui",
+    color: "#2167bb",
   },
 }));
 
@@ -74,13 +74,8 @@ export default function BlogCard({item}) {
     // if user doenst exist it is routed to the login page via PrivateRouter
     navigate(`/detail/${id}`);
   };
-
-
-
+  
   return (
-    
-     
-
     <Card className={classes.root}>
     <CardActionArea onClick={openDetails}>
       <CardMedia

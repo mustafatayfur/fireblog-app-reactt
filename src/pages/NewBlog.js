@@ -67,7 +67,7 @@ const NewBlog = () => {
           <img src={blogPng} alt="blog" className={classes.blogImg} />
         </Avatar>
         <Typography component="h1" variant="h5" className={classes.title}>
-          ── New Blog ──
+          New Blog
         </Typography>
       </div>
       <BlogForm blog={blog} handler={handler} />

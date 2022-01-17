@@ -27,17 +27,17 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
     color: "white",
     fontWeight: "bold",
     "&:hover": {
-      color: "#046582",
+      color: "#2167bb",
     },
   },
   title: {
     fontSize: 35,
     fontFamily: "Girassol",
-    color: "#046582",
+    color: "#2167bb",
   },
 }));
 const UpdateBlog = () => {

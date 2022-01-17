@@ -100,7 +100,9 @@ export default function Navbar() {
               </Typography>
             </Link>
           </div>
-
+            <Typography>
+              {currentUser ? currentUser.email : ''}
+            </Typography>
           <div>
             <IconButton
               aria-label="account of current user"
