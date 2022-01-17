@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: "none",
-    fontFamily: "Girassol",
+    fontFamily: "system-ui",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
   },
   logo: {
     width: 40,
@@ -96,7 +96,7 @@ export default function Navbar() {
           <div className={classes.root}>
             <Link to="/" className={classes.login}>
               <Typography variant="h6" className={classes.title}>
-                ──── <span>{"<Clarusway IT />"}</span> BLOG ────
+                FIREBLOG  APP
               </Typography>
             </Link>
           </div>

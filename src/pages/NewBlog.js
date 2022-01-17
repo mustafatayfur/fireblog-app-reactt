@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     padding: theme.spacing(13),
-    backgroundColor: "#046582",
+    backgroundColor: "#2167bb",
   },
   blogImg: {
     width: 200,
@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
 
   title: {
     fontSize: 35,
-    fontFamily: "Girassol",
-    color: "#046582",
+    fontFamily: "system-ui",
+    color: "#2167bb",
   },
 }));
 

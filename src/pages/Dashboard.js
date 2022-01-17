@@ -15,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   title: {
-    fontFamily: "Girassol",
+    fontFamily: "system-ui",
     textAlign: "center",
-    color: "#046582",
+    color: "#2167bb",
   },
   mainRoot: {
-    marginTop: 70,
+    marginTop: 35,
   },
 }));
 
@@ -30,8 +30,8 @@ const Dashboard = () => {
 
   return (
     <div className={classes.mainRoot}>
-      <Typography className={classes.title} variant="h3" noWrap>
-        ──── Dashboard ────
+      <Typography className={classes.title} variant="h5" noWrap>
+        Dashboard
       </Typography>
       <>
         <Grid container className={classes.root} justifyContent="center">
