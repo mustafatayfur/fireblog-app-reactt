@@ -90,86 +90,88 @@ const Detail = () => {
         Details
       </Typography>
       {result?.length > 0 &&
-        result?.map((item, index) => {
-          if(item.id === id)
-          return (
-            <div key={index}>
-            <Card className={classes.cardRoot}>
-              <div>
-                <CardMedia
-                  className={classes.media}
-                  image={item.image || placeholder}
-                  title={item.title}
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className={classes.title}
-                  >
-                    {item.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                    className={classes.dataStyle}
-                  >
-                    {moment(item.published_date).format("MMM DD, YYYY")}
-                  </Typography>
-                  <p>{item.content}</p>
-                </CardContent>
-              </div>
-              <CardActions>
-                <AccountCircle className={classes.avatar} />
-                <Typography gutterBottom variant="h6" component="h2">
-                  {item.author}
-                </Typography>
-              </CardActions>
-              <CardActions>
-                <IconButton
-                  aria-label="add to favorites"
-                  className={classes.image}
-                >
-                  <FavoriteIcon
-                    color={item.get_like_count > 0 ? "secondary" : "disabled"}
+        result?.map((item, index)=> {
+          if(item.id === id){
+            return (
+              <div key={index}>
+              <Card className={classes.cardRoot}>
+                <div>
+                  <CardMedia
+                    className={classes.media}
+                    image={item.image || placeholder}
+                    title={item.title}
                   />
-                </IconButton>
-                <Typography variant="body2" color="textSecondary">
-                  {item.get_like_count}
-                </Typography>
-                <IconButton
-                  aria-label="comment count"
-                  className={classes.image}
-                >
-                  <ChatBubbleOutlineIcon />
-                </IconButton>
-                <Typography variant="body2" color="textSecondary">
-                  {item.get_comment_count}
-                </Typography>
-              </CardActions>
-            </Card>
-            {item.author === currentUser?.email && (
-              <div className={classes.buttonGroup}>
-                <Button
-                  variant="contained"
-                  color="primary" 
-                  onClick={() => updateHandler(item.id)}
-                >
-                  Update
-                </Button>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => deleteHandler(item.id)}
-                >
-                  Delete
-                </Button>
-              </div>
-            )}
-          </div>
-          )
+                  <CardContent className={classes.cardContent}>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      className={classes.title}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                      className={classes.dataStyle}
+                    >
+                      {moment(item.published_date).format("MMM DD, YYYY")}
+                    </Typography>
+                    <p>{item.content}</p>
+                  </CardContent>
+                </div>
+                <CardActions>
+                  <AccountCircle className={classes.avatar} />
+                  <Typography gutterBottom variant="h6" component="h2">
+                    {item.author}
+                  </Typography>
+                </CardActions>
+                <CardActions>
+                  <IconButton
+                    aria-label="add to favorites"
+                    className={classes.image}
+                  >
+                    <FavoriteIcon
+                      color={item.get_like_count > 0 ? "secondary" : "disabled"}
+                    />
+                  </IconButton>
+                  <Typography variant="body2" color="textSecondary">
+                    {item.get_like_count}
+                  </Typography>
+                  <IconButton
+                    aria-label="comment count"
+                    className={classes.image}
+                  >
+                    <ChatBubbleOutlineIcon />
+                  </IconButton>
+                  <Typography variant="body2" color="textSecondary">
+                    {item.get_comment_count}
+                  </Typography>
+                </CardActions>
+              </Card>
+              {item.author === currentUser?.email && (
+                <div className={classes.buttonGroup}>
+                  <Button
+                    variant="contained"
+                    color="primary" 
+                    onClick={() => updateHandler(item.id)}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => deleteHandler(item.id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              )}
+            </div>
+            )
+          }
+          
          
             })}
     </div>
