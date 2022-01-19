@@ -12,7 +12,7 @@ export function useBlog() {
 
 // Defining a method for BlogContext.Provider
 export function BlogContextProvider({ children }) {
-  const [currentBlogs, setCurrentBlogs] = useState();
+  const [currentBlogs, setCurrentBlogs] = useState([]);
 
   function addBlog(blogValue) {
     const blogRef = firebaseDB.ref("blogs");

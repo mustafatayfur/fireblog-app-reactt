@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -57,7 +57,8 @@ export default function Navbar() {
   const open = Boolean(anchorEl);
   let { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  // const {uid} = currentUser
+  const [newUid, setNewUid] = useState()
+  
 
   //!Just for testing purpose
   // currentUser = {
@@ -65,6 +66,13 @@ export default function Navbar() {
   // };
 
   console.log(currentUser);
+
+  const handleCurrentUser = ()=> {
+    const {uid} = currentUser
+    if(currentUser !== null){
+      setNewUid(uid)
+    }
+  }
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -82,9 +90,9 @@ export default function Navbar() {
     setAnchorEl(null);
     navigate("/");
   };
-  // const handleProfile = (id) => {
-  //   navigate(`/profile/${id}`);
-  // };
+  const handleProfile = (id) => {
+    navigate(`/profile/${id}`);
+  };
 
 
   return (
@@ -137,8 +145,8 @@ export default function Navbar() {
                 open={open}
                 onClose={handleClose}
               >
-                <Link to={`/profile`} className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <Link to={`/profile/${newUid}`} className={classes.linkStyle}>
+                  <MenuItem onClick={()=> handleProfile(newUid)}>Profile</MenuItem>
                 </Link>
                 <Link to="/new-blog" className={classes.linkStyle}>
                   <MenuItem onClick={handleClose}>New Blog</MenuItem>
