@@ -1,4 +1,4 @@
-import { toast } from "react-toastNotify";
+import { toast } from "react-toastify";
 
 export const toastWarnNotify = (msg) => {
   toast.warn(msg, {
