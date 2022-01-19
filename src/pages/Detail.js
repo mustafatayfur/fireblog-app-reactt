@@ -15,7 +15,7 @@ import { useBlog } from "../context/BlogContextProvider";
 import { useAuth } from "../context/AuthContextProvider";
 import Button from "@material-ui/core/Button";
 import { useNavigate, useParams } from "react-router-dom";
-import { toastSuccessNotify } from "../utils/ToastNotify";
+// import { toastSuccessNotify } from "../utils/ToastNotify";
 
 const useStyles = makeStyles({
   root: {
@@ -77,7 +77,7 @@ const Detail = () => {
   const deleteHandler = (id) => {
     deleteOneBlog(id);
     navigate("/");
-    toastSuccessNotify("Deleted successfully!");
+    // toastSuccessNotify("Deleted successfully!");
   };
 
   const updateHandler = (id) => {

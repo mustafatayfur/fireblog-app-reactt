@@ -8,7 +8,7 @@ import blogPng from "../assets/blok.png";
 import { useNavigate } from "react-router-dom";
 import { useBlog } from "../context/BlogContextProvider";
 import { useAuth } from "../context/AuthContextProvider";
-import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
+// import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
 import BlogForm from "../components/BlogForm";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +43,9 @@ const NewBlog = () => {
     try {
       addBlog(newBlog);
       navigate("/");
-      toastSuccessNotify("Blog added");
+      // toastSuccessNotify("Blog added");
     } catch (error) {
-      toastErrorNotify("Blog can not be added");
+      // toastErrorNotify("Blog can not be added");
     }
   };
 
