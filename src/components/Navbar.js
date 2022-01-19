@@ -82,9 +82,9 @@ export default function Navbar() {
     setAnchorEl(null);
     navigate("/");
   };
-  const handleProfile = (id) => {
-    navigate(`/profile/${id}`);
-  };
+  // const handleProfile = (id) => {
+  //   navigate(`/profile/${id}`);
+  // };
 
 
   return (

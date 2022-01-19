@@ -69,10 +69,14 @@ export default function BlogCard({item}) {
 
   const openDetails = () => {
     if (!currentUser) {
+      navigate(`/login`)
       // toastErrorNotify("Please Login to get the details");
     }
-    // if user doenst exist it is routed to the login page via PrivateRouter
-    navigate(`/detail/${id}`);
+    else{
+      // if user doenst exist it is routed to the login page via PrivateRouter
+      navigate(`/detail/${id}`);
+    }
+    
   };
   
   return (
