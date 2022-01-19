@@ -7,9 +7,10 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import cwLogo from "../assets/blogpost.jpeg";
+import Logo from "../assets/Weight-loss-blogs.jpg";
 import { useAuth } from "../context/AuthContextProvider";
 import { Link, useNavigate } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#2167bb",
   },
   logo: {
-    width: 40,
+    width: 110,
+    height: 80,
   },
   linkStyle: {
     textDecoration: "none",
@@ -97,7 +99,7 @@ export default function Navbar() {
             aria-label="menu"
             onClick={handleDashboard}
           >
-            <img src={cwLogo} alt="logo" className={classes.logo} />
+            <Avatar src={Logo} alt="logo" className={classes.logo} />
           </IconButton>
           <div className={classes.root}>
             <Link to="/" className={classes.login}>
