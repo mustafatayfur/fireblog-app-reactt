@@ -55,7 +55,7 @@ export default function Navbar() {
   const open = Boolean(anchorEl);
   let { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const {uid} = currentUser
+  // const {uid} = currentUser
 
   //!Just for testing purpose
   // currentUser = {
@@ -135,8 +135,8 @@ export default function Navbar() {
                 open={open}
                 onClose={handleClose}
               >
-                <Link to={`/profile/${uid}`} className={classes.linkStyle}>
-                  <MenuItem onClick={()=> handleProfile(uid), handleClose}>Profile</MenuItem>
+                <Link to={`/profile`} className={classes.linkStyle}>
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
                 </Link>
                 <Link to="/new-blog" className={classes.linkStyle}>
                   <MenuItem onClick={handleClose}>New Blog</MenuItem>
