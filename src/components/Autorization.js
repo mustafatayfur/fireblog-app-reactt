@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import blokPng from "../assets/blok.png";
 import { useNavigate } from "react-router-dom";
-import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
+// import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
 import { Formik, Form } from "formik";
 import * as yup from "yup";
 import { useAuth } from "../context/AuthContextProvider";
@@ -211,24 +211,24 @@ const Autorization = (props) => {
           if (method === "Login") {
             login(values.email, values.password)
               .then(() => {
-                toastSuccessNotify(`${method} Successfully performed!`);
+                // toastSuccessNotify(`${method} Successfully performed!`);
                 navigate("/");
                 actions.setSubmitting(false);
               })
               .catch((error) => {
-                toastErrorNotify(error.message);
+                // toastErrorNotify(error.message);
                 actions.setSubmitting(false);
                 actions.resetForm();
               });
           } else {
             signup(values.email, values.password)
               .then(() => {
-                toastSuccessNotify(`${method} Successfully performed!`);
+                // toastSuccessNotify(`${method} Successfully performed!`);
                 navigate("/");
                 actions.setSubmitting(false);
               })
               .catch((error) => {
-                toastErrorNotify(error.message);
+                // toastErrorNotify(error.message);
                 actions.setSubmitting(false);
                 actions.resetForm();
               });

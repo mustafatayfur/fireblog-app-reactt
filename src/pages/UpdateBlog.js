@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import placeholderPng from "../assets/placeholder.png";
 import { useBlog } from "../context/BlogContextProvider";
-import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
+// import { toastSuccessNotify, toastErrorNotify } from "../utils/ToastNotify";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogForm from "../components/BlogForm";
 
@@ -61,9 +61,9 @@ const UpdateBlog = () => {
     try {
       updateBlog(res?.id, blogToUpdate);
       navigate("/");
-      toastSuccessNotify("Blog Updated");
+      // toastSuccessNotify("Blog Updated");
     } catch (error) {
-      toastErrorNotify("Blog can not be Updated");
+      // toastErrorNotify("Blog can not be Updated");
     }
   };
 
