@@ -55,6 +55,7 @@ export default function Navbar() {
   const open = Boolean(anchorEl);
   let { currentUser, logout } = useAuth();
   const navigate = useNavigate();
+  const {uid} = currentUser
 
   //!Just for testing purpose
   // currentUser = {
@@ -79,8 +80,13 @@ export default function Navbar() {
     setAnchorEl(null);
     navigate("/");
   };
+  const handleProfile = (id) => {
+    navigate(`/profile/${id}`);
+  };
+
 
   return (
+    
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
@@ -129,8 +135,8 @@ export default function Navbar() {
                 open={open}
                 onClose={handleClose}
               >
-                <Link to="/profile" className={classes.linkStyle}>
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <Link to={`/profile/${uid}`} className={classes.linkStyle}>
+                  <MenuItem onClick={()=> handleProfile(uid), handleClose}>Profile</MenuItem>
                 </Link>
                 <Link to="/new-blog" className={classes.linkStyle}>
                   <MenuItem onClick={handleClose}>New Blog</MenuItem>

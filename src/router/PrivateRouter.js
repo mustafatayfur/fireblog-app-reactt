@@ -23,7 +23,7 @@ const PrivateRouter = (props) => {
     <Routes>
     <Route path="/detail/:id" element={<Detail/>} />
     <Route path="/new-blog" element={<NewBlog/>} />
-    <Route path="/profile:id" element={<Profile/>} />
+    <Route path="/profile/:id" element={<Profile/>} />
     <Route path="/updateBlog/:id" element={<UpdateBlog/>} />
     </Routes>
 

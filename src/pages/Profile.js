@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { useAuth } from "../context/AuthContextProvider";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -36,9 +37,10 @@ const useStyles = makeStyles({
   },
 });
 const Profile = () => {
+  const {id} = useParams()
   const classes = useStyles();
   const { currentUser } = useAuth();
-  console.log(currentUser);
+  console.log(id);
 
   return (
     <div className={classes.mainDiv}>
@@ -64,6 +66,9 @@ const Profile = () => {
           </Typography>
           <Typography variant="body2" component="p">
             {currentUser?.email || "Not Found!"}
+          </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+           {`User Id: ${id}`}
           </Typography>
         </CardContent>
       </Card>
