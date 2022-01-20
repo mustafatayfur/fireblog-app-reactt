@@ -92,6 +92,8 @@ export default function Navbar() {
   };
   const handleProfile = (id) => {
     navigate(`/profile/${id}`);
+    handleCurrentUser();
+    handleClose();
   };
 
 

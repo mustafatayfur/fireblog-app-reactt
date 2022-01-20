@@ -93,7 +93,7 @@ const Detail = () => {
         result?.map((item, index)=> {
           if(item.id === id){
             return (
-              <div key={index}>
+            <div key={index}>
               <Card className={classes.cardRoot}>
                 <div>
                   <CardMedia
@@ -170,10 +170,12 @@ const Detail = () => {
               )}
             </div>
             )
+            
           }
-          
+             return item    
+        }
          
-            })}
+        )}
     </div>
   );
 };
